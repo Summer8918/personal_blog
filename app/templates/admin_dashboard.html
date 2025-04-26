@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <p><a href="{{ url_for('add_article') }}">➕ Add New Article</a></p>
+
+    {% if articles %}
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.date }}</td>
+                <td>
+                    <a href="{{ url_for('edit_article', slug=article.slug) }}">✏️ Edit</a> |
+                    <a href="{{ url_for('delete_article', slug=article.slug) }}" onclick="return confirm('Are you sure?')">🗑️ Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No articles yet.</p>
+    {% endif %}
+
+    <p><a
+
